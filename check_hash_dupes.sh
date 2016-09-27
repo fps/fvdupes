@@ -13,6 +13,10 @@ for line in $input; do
     thumb2=`tail -n +$match2 thumbnails_list.txt | head -n 1 | sed -r -e 's;(.*?)_thumbnail_.*;\1;'`;
 
     if [ -f "$thumb1" ] && [ -f "$thumb2" ]; then
+        if [ "$thumb1" = "$thumb2" ]; then
+            continue
+        fi
+
         nplayer "$thumb1" < /dev/null
         nplayer "$thumb2" < /dev/null
 
